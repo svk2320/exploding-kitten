@@ -1,30 +1,24 @@
-import {
-  BrowserRouter as Router,
-} from "react-router-dom";
-import {
-  Arwes,
-  SoundsProvider,
-  ThemeProvider,
-  createSounds,
-  createTheme,
-} from "arwes";
+import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Box } from '@material-ui/core';
 
-import AppLayout from "./pages/AppLayout";
+import Home from './components/Home';
+import Game from './components/Game';
 
-import { theme, resources, sounds } from "./settings";
+import './App.css';
 
-const App = () => {
-  return <ThemeProvider theme={createTheme(theme)}>
-    <SoundsProvider sounds={createSounds(sounds)}>
-      <Arwes animate background={resources.background.large} pattern={resources.pattern}>
-        {anim => (
-          <Router>
-            <AppLayout show={anim.entered} />
-          </Router>
-        )}
-      </Arwes>
-    </SoundsProvider>
-  </ThemeProvider>;
+const App = ({ game }) => {
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    setUserName(game?.username);
+  }, [game]);
+
+  return <Box>{userName ? <Game /> : <Home />}</Box>;
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  game: state.game,
+});
+
+export default connect(mapStateToProps)(App);

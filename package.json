@@ -1,31 +1,24 @@
 {
-  "name": "exploding-kitten",
+  "name": "exploding-kitten-game",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "install-server": "npm install --prefix server",
-    "install-client": "npm install --prefix client",
-    "install-globally": "concurrently \"npm install-server\" \"npm install-client\"",
-    "server": "npm run watch --prefix server",
-    "client": "npm run start --prefix client",
-    "watch": "concurrently \"npm run server\" \"npm run client\"",
-    "deploy": "npm run build --prefix client && npm start --prefix server",
-    "deploy-cluster": "npm run build --prefix client && npm run cluster --prefix server ",
-    "test": "npm run test --prefix server && npm run test --prefix client"
+    "start": "node server",
+    "server": "nodemon server"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vasanth2401/NASA-Misson-Dashbroad.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vasanth2401/NASA-Misson-Dashbroad/issues"
-  },
-  "homepage": "https://github.com/vasanth2401/NASA-Misson-Dashbroad#readme",
   "dependencies": {
-    "concurrently": "^7.6.0"
+    "body-parser": "^1.19.0",
+    "config": "^3.3.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "emojily": "^1.0.2",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "mongoose": "^5.8.7",
+    "redis": "^4.6.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
